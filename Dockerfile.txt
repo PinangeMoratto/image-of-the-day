@@ -14,6 +14,6 @@ RUN mvn package
 # Estágio 3: Disponibilizar a aplicação
 FROM maven
 WORKDIR /app
-COPY --from=construction /app/image-of-the-day/target/iotd-service-0.1.0.jar /app
+COPY --from=construction /app/image-of-the-day/target/iotd-service-0.1.0.jar .
 EXPOSE 80
 ENTRYPOINT ["java", "-jar", "/app/iotd-service-0.1.0.jar"]
