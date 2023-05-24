@@ -1,5 +1,5 @@
 # Estágio 1: Obter o código do GitHub
-FROM alpine/git as clone
+FROM maven as clone
 WORKDIR /app
 RUN git clone https://github.com/PinangeMoratto/image-of-the-day.git
 
@@ -7,6 +7,7 @@ RUN git clone https://github.com/PinangeMoratto/image-of-the-day.git
 FROM maven as construction
 WORKDIR /app
 COPY --from=clone /app/image-of-the-day .
+COPY pom.xml .
 RUN mvn -B dependency:go-offline
 COPY . .
 RUN mvn package
